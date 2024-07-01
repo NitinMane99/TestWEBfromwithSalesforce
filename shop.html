@@ -1,0 +1,122 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Retail Shop Billing UI</title>
+    <!-- Include Tailwind CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
+    <!-- Custom styles -->
+    <style>
+        /* Add any custom styles here */
+    </style>
+</head>
+<body class="bg-gray-100">
+    <div class="container mx-auto px-4 py-8">
+        <h1 class="text-2xl font-semibold mb-4">Retail Shop Billing</h1>
+
+        <!-- Product Catalog Display -->
+        <div class="mb-8">
+            <h2 class="text-xl font-semibold mb-2">Product Catalog</h2>
+            <div class="flex items-center mb-4">
+                <input type="text" placeholder="Search products..." class="border-gray-300 border rounded-l-md py-2 px-4 w-1/2">
+                <button class="bg-blue-500 hover:bg-blue-600 text-white py-2 px-4 rounded-r-md">Search</button>
+            </div>
+            <!-- Product List -->
+            <div class="grid grid-cols-2 gap-4">
+                <!-- Example Product Item -->
+                <div class="bg-white p-4 border rounded-md shadow-sm flex items-center justify-between">
+                    <div>
+                        <h3 class="font-semibold text-lg">Product A</h3>
+                        <p class="text-gray-500">Price: $10.00</p>
+                    </div>
+                    <button onclick="addProduct('Product A', 10.00)" class="bg-blue-500 hover:bg-blue-600 text-white py-2 px-4 rounded-md">Add</button>
+                </div>
+                <!-- Repeat product items as necessary -->
+                <div class="bg-white p-4 border rounded-md shadow-sm flex items-center justify-between">
+                    <div>
+                        <h3 class="font-semibold text-lg">Product B</h3>
+                        <p class="text-gray-500">Price: $15.00</p>
+                    </div>
+                    <button onclick="addProduct('Product B', 15.00)" class="bg-blue-500 hover:bg-blue-600 text-white py-2 px-4 rounded-md">Add</button>
+                </div>
+                <!-- Repeat product items as necessary -->
+            </div>
+        </div>
+
+        <!-- Transaction Management -->
+        <div class="mb-8">
+            <h2 class="text-xl font-semibold mb-2">Transaction Summary</h2>
+            <div id="transactionItems" class="bg-white p-4 border rounded-md shadow-sm">
+                <!-- Transaction Items will be added dynamically here -->
+                <!-- Total -->
+                <hr class="my-2">
+                <div class="flex justify-between items-center">
+                    <p class="text-xl font-semibold">Total:</p>
+                    <p id="totalAmount" class="text-xl font-semibold">$0.00</p>
+                </div>
+            </div>
+        </div>
+
+        <!-- Customer Interaction -->
+        <div>
+            <h2 class="text-xl font-semibold mb-2">Customer Information</h2>
+            <form class="bg-white p-4 border rounded-md shadow-sm">
+                <div class="mb-4">
+                    <label for="customerName" class="block text-sm font-medium text-gray-700">Customer Name</label>
+                    <input type="text" id="customerName" name="customerName" class="border-gray-300 border rounded-md py-2 px-4 w-full">
+                </div>
+                <div class="mb-4">
+                    <label for="paymentMethod" class="block text-sm font-medium text-gray-700">Payment Method</label>
+                    <select id="paymentMethod" name="paymentMethod" class="border-gray-300 border rounded-md py-2 px-4 w-full">
+                        <option value="cash">Cash</option>
+                        <option value="card">Credit Card</option>
+                        <option value="mobile">Mobile Payment</option>
+                    </select>
+                </div>
+                <button type="submit" class="bg-blue-500 hover:bg-blue-600 text-white py-2 px-4 rounded-md">Complete Payment</button>
+            </form>
+        </div>
+    </div>
+
+    <!-- JavaScript to handle adding products and calculating total -->
+    <script>
+        let transactionItems = []; // Array to store added products
+        let totalAmount = 0;
+
+        // Function to add product to transaction
+        function addProduct(name, price) {
+            transactionItems.push({ name: name, price: price });
+            updateTransactionUI();
+        }
+
+        // Function to update transaction UI
+        function updateTransactionUI() {
+            const transactionItemsContainer = document.getElementById('transactionItems');
+            transactionItemsContainer.innerHTML = ''; // Clear previous items
+
+            transactionItems.forEach(item => {
+                const itemElement = document.createElement('div');
+                itemElement.classList.add('flex', 'justify-between', 'items-center', 'mb-2');
+
+                const itemName = document.createElement('p');
+                itemName.classList.add('text-lg');
+                itemName.textContent = item.name;
+                itemElement.appendChild(itemName);
+
+                const itemPrice = document.createElement('p');
+                itemPrice.classList.add('text-lg');
+                itemPrice.textContent = `$${item.price.toFixed(2)}`;
+                itemElement.appendChild(itemPrice);
+
+                transactionItemsContainer.appendChild(itemElement);
+            });
+
+            // Calculate total amount
+            totalAmount = transactionItems.reduce((acc, item) => acc + item.price, 0);
+            const totalAmountElement = document.getElementById('totalAmount');
+            totalAmountElement.textContent = `$${totalAmount.toFixed(2)}`;
+        }
+    </script>
+</body>
+</html>

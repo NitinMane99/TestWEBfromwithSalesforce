@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>WebForm</title>
+    <!-- Include Tailwind CSS from CDN -->
+    <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
+</head>
+<body class="bg-gray-100 flex items-center justify-center min-h-screen">
+    <form action="https://webto.salesforce.com/servlet/servlet.WebToLead?encoding=UTF-8&orgId=00DGB0000013WWw" method="POST" class="bg-white p-6 rounded-lg shadow-lg w-full max-w-md">
+        <input type="hidden" name="oid" value="00DGB0000013WWw">
+        <input type="hidden" name="retURL" value="http://">
+
+        <div class="mb-4">
+            <label for="first_name" class="block text-sm font-medium text-gray-700">First Name</label>
+            <input id="first_name" maxlength="40" name="first_name" type="text" class="mt-1 block w-full p-2 border border-gray-300 rounded-md shadow-sm focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm" />
+        </div>
+
+        <div class="mb-4">
+            <label for="last_name" class="block text-sm font-medium text-gray-700">Last Name</label>
+            <input id="last_name" maxlength="80" name="last_name" type="text" class="mt-1 block w-full p-2 border border-gray-300 rounded-md shadow-sm focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm" />
+        </div>
+
+        <div class="mb-4">
+            <label for="email" class="block text-sm font-medium text-gray-700">Email</label>
+            <input id="email" maxlength="80" name="email" type="text" class="mt-1 block w-full p-2 border border-gray-300 rounded-md shadow-sm focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm" />
+        </div>
+
+        <div class="mb-4">
+            <label for="company" class="block text-sm font-medium text-gray-700">Company</label>
+            <input id="company" maxlength="40" name="company" type="text" class="mt-1 block w-full p-2 border border-gray-300 rounded-md shadow-sm focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm" />
+        </div>
+
+        <div class="mb-4">
+            <label for="city" class="block text-sm font-medium text-gray-700">City</label>
+            <input id="city" maxlength="40" name="city" type="text" class="mt-1 block w-full p-2 border border-gray-300 rounded-md shadow-sm focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm" />
+        </div>
+
+        <div class="mb-4">
+            <label for="state" class="block text-sm font-medium text-gray-700">State/Province</label>
+            <input id="state" maxlength="20" name="state" type="text" class="mt-1 block w-full p-2 border border-gray-300 rounded-md shadow-sm focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm" />
+        </div>
+
+        <div>
+            <input type="submit" name="submit" class="w-full bg-indigo-600 text-white p-2 rounded-md shadow-sm hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500" />
+        </div>
+    </form>
+</body>
+</html>
